@@ -29,7 +29,8 @@
             border-radius: 20px;
             cursor: pointer;
         }
-        p{
+
+        p {
             margin: auto;
             font-size: 20px;
             color: blue;
@@ -47,7 +48,6 @@
 
         <login-form />
 
-
     </div>
     </div>
 
@@ -56,33 +56,36 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    inputValue: '',
-                    showBox: false,
-                    inputText: false,
                 }
             },
             methods: { // in this methods object we write our all functions
 
             },
         })
+
         app.component('login-form', {
             template: `
             <form @submit.prevent="handleSubmit" >
                 <h1>{{title}}</h1>
-                <input type="email" v-model="emailValue" placeholder="Enter your email">
-                <input type="password" v-model="passwordValue" placeholder="Enter your password">
+
+                <!-- we can also write simple : instead of v-bind -->
+                <custom-input v-model="emailInput" :label="emailLabel" />
+                <custom-input v-model="passwordInput" :label="passwordLabel" />
+
                 <button type="submit">Submit</button>
 
-                <p v-if="showEmailAndPassword" >email is: {{emailValue}}</p>
-                <p v-if="showEmailAndPassword" >password is: {{passwordValue}}</p>
+                <p v-if="showEmailAndPassword" >email is: {{emailInput}}</p>
+                <p v-if="showEmailAndPassword" >password is: {{passwordInput}}</p>
 
-            </form>`
-            ,
+            </form>`,
+            components: ['custom-input'],
             data() {
                 return {
                     title: "Login Form",
-                    emailValue: '',
-                    passwordValue: '',
+                    emailInput: "",
+                    passwordInput: "",
+                    emailLabel: 'Email',
+                    passwordLabel: 'Password',
                     showEmailAndPassword: false,
                 }
             },
@@ -90,6 +93,27 @@
                 handleSubmit() {
                     console.log("Submitted")
                     this.showEmailAndPassword = true;
+                }
+            }
+        })
+
+        app.component('custom-input', {
+            template: `
+                <label>
+                    {{label}}
+                    <input v-model="inputValue"/>
+                </label>
+            `,
+            props: ['label', 'modelValue'],
+            computed: {
+                inputValue: {
+                    get() { //getter
+                        return this.modelValue
+                    },
+                    set(value) { //setter
+                        console.log(value)
+                        this.$emit("update:modelValue", value)
+                    }
                 }
             }
         })
