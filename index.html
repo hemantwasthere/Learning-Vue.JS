@@ -35,6 +35,11 @@
             font-size: 20px;
             color: blue;
         }
+        .input{
+            margin: 5px auto;
+            padding: 5px 10px;
+            color: green;
+        }
 
         [v-cloak] {
             display: none;
@@ -68,6 +73,9 @@
             <form @submit.prevent="handleSubmit" >
                 <h1>{{title}}</h1>
 
+                Doing looping here using v-for
+                <p class="input" v-for="(str, index) in inputs" :key="index" >{{ str }} {{ index }}</p>
+
                 <!-- we can also write simple : instead of v-bind -->
                 <custom-input v-model="emailInput" :label="emailLabel" />
                 <custom-input v-model="passwordInput" :label="passwordLabel" />
@@ -87,6 +95,7 @@
                     emailLabel: 'Email',
                     passwordLabel: 'Password',
                     showEmailAndPassword: false,
+                    inputs: ['name', 'email', 'password'],
                 }
             },
             methods: {
