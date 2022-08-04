@@ -7,12 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue 3 Basics</title>
     <style>
-        .box {
-            background-color: purple;
-            width: 400px;
-            height: 400px;
+        input {
+            margin: 10px auto;
+            display: block;
+            padding: 20px 12px;
             border-radius: 10px;
-            margin: 50px auto;
+            color: black;
+        }
+
+        h1 {
+            margin-top: 100px;
+            margin-left: 466px;
+            color: black;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-left: 466px;
+            color: black;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        p{
+            margin: auto;
+            font-size: 20px;
+            color: blue;
         }
 
         [v-cloak] {
@@ -24,28 +44,16 @@
 <body>
     <!-- "v-cloak" will hide everything before rendering gets processed  -->
     <div id="app" v-cloak>
-        <input @keyup.enter="inputText=true" v-model="inputValue" type="text">
-        <!-- The event will trigger only on enter click -->
 
-        <span v-if="inputText">Input Text is : {{inputValue}}</span>
+        <login-form />
 
-
-        <!-- <button v-on:click="showBox=!showBox">Click to show box</button> -->
-        <!-- <button @click="showBox=!showBox">Click to show box </button> Same as above -->
-
-        <button @keydown="keyCode">Click to show box </button>
-
-        <br>
-
-        <div v-if="showBox" class="box"></div>
 
     </div>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-        const { createApp } = Vue
-        createApp({
+        const app = Vue.createApp({
             data() {
                 return {
                     inputValue: '',
@@ -54,14 +62,38 @@
                 }
             },
             methods: { // in this methods object we write our all functions
-                toggleButton() {
-                    this.showBox = !this.showBox
-                },
-                keyCode() {
-                    console.log("keyCode of the key you pressed is 🔑 -> " + event.keyCode)
+
+            },
+        })
+        app.component('login-form', {
+            template: `
+            <form @submit.prevent="handleSubmit" >
+                <h1>{{title}}</h1>
+                <input type="email" v-model="emailValue" placeholder="Enter your email">
+                <input type="password" v-model="passwordValue" placeholder="Enter your password">
+                <button type="submit">Submit</button>
+
+                <p v-if="showEmailAndPassword" >email is: {{emailValue}}</p>
+                <p v-if="showEmailAndPassword" >password is: {{passwordValue}}</p>
+
+            </form>`
+            ,
+            data() {
+                return {
+                    title: "Login Form",
+                    emailValue: '',
+                    passwordValue: '',
+                    showEmailAndPassword: false,
                 }
             },
-        }).mount('#app')
+            methods: {
+                handleSubmit() {
+                    console.log("Submitted")
+                    this.showEmailAndPassword = true;
+                }
+            }
+        })
+        app.mount('#app')
     </script>
 
 </body>
