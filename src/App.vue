@@ -1,6 +1,8 @@
 <template>
-  <Header :title="title" />
-  <Tasks :tasks="tasks" />
+  <div class="container">
+    <Header :title="title" />
+    <Tasks :tasks="tasks" />
+  </div>
 </template>
 
 
@@ -20,16 +22,22 @@ export default {
   created() {
     this.tasks = [
       {
+        id: 1,
         text: "Learn Vue",
-        done: false,
+        day: "March 3rd at 1:30pm",
+        reminder: true,
       },
       {
-        text: "Learn Vuex",
-        done: false,
+        id: 2,
+        text: "Learn React",
+        day: "April 3rd at 1:30pm",
+        reminder: false,
       },
       {
-        text: "Learn Vue Router",
-        done: false,
+        id: 3,
+        text: "Learn Next.js",
+        day: "may 3rd at 1:30pm",
+        reminder: true,
       },
     ];
   },
