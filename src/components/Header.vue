@@ -9,6 +9,7 @@
 import Button from "./Button.vue";
 
 export default {
+  name: "Header",
   props: ["title"], // one way of registering the props
   //   props: { second way of registering the props
   //     title: String,

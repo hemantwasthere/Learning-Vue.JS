@@ -1,18 +1,38 @@
 <template>
   <Header :title="title" />
+  <Tasks :tasks="tasks" />
 </template>
+
 
 <script>
 import Header from "./components/Header.vue";
+import Tasks from "./components/Tasks.vue";
 
 export default {
   name: "App",
-  components: { Header },
-  data(){
+  components: { Header, Tasks },
+  data() {
     return {
-      title: "Task Tracker"
-    }
-  }
+      title: "Task Tracker",
+      tasks: [],
+    };
+  },
+  created() {
+    this.tasks = [
+      {
+        text: "Learn Vue",
+        done: false,
+      },
+      {
+        text: "Learn Vuex",
+        done: false,
+      },
+      {
+        text: "Learn Vue Router",
+        done: false,
+      },
+    ];
+  },
 };
 </script>
 
