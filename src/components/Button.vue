@@ -10,7 +10,7 @@ export default {
   props: ["text", "color"],
   methods: {
     addTask() {
-      console.log("task added");
+      this.$emit('show-add-task')
     },
   },
 };

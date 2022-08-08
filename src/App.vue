@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <Header :title="title" />
-    <AddTask />
+    <Header @show-add-task="makeShowTheTask" :title="title" />
+    <div v-if="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
@@ -23,9 +25,13 @@ export default {
     return {
       title: "Task Tracker",
       tasks: [],
+      showAddTask: false,
     };
   },
   methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
+    },
     deleteTask(id) {
       if (confirm("Are you sure"))
         this.tasks = this.tasks.filter((task) => task.id !== id);
@@ -35,6 +41,9 @@ export default {
         task.id === id ? { ...task, reminder: !task.reminder } : task;
       });
       console.log(id + "🔑🔑");
+    },
+    makeShowTheTask() {
+      this.showAddTask = !this.showAddTask;
     },
   },
   created() {
