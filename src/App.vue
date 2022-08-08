@@ -14,6 +14,8 @@
       :tasks="tasks"
     />
   </div>
+
+  <Footer />
 </template>
 
 
@@ -21,10 +23,11 @@
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
 import AddTask from "./components/AddTask.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
-  components: { Header, Tasks, AddTask },
+  components: { Header, Tasks, AddTask, Footer },
   data() {
     return {
       title: "Task Tracker",
