@@ -1,6 +1,6 @@
 <template>
-  <button @click="addTask" class="btn" :style="{ backgroundColor: color }">
-    {{ text }}
+  <button @click="addTask()" class="btn" :style="{ backgroundColor: color }">
+    {{ text }} 
   </button>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   props: ["text", "color"],
   methods: {
     addTask() {
-      this.$emit('show-add-task')
+      this.$emit('btn-click')
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header @show-add-task="makeShowTheTask" :title="title" />
+    <Header :showAddTask="showAddTask" @btn-click="makeShowTheTask" :title="title" />
     <div v-if="showAddTask">
       <AddTask @add-task="addTask" />
     </div>

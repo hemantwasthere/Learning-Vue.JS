@@ -2,9 +2,9 @@
   <header>
     <h1>{{ title }}</h1>
     <Button
-      @show-add-task="$emit('show-add-task')"
-      text="Add Task"
-      color="green"
+      @btn-click="$emit('btn-click')"
+      :text="showAddTask ? 'Close' : 'Add Task'"
+      :color="showAddTask ? 'gray' : 'green'"
     />
   </header>
 </template>
@@ -14,7 +14,7 @@ import Button from "./Button.vue";
 
 export default {
   name: "Header",
-  props: ["title"], // one way of registering the props
+  props: ["title", "showAddTask"], // one way of registering the props
   //   props: { second way of registering the props
   //     title: String,
   //   },
@@ -26,7 +26,6 @@ export default {
   //     },
   //   },
   components: { Button },
-  emits: ["show-add-task"],
 };
 </script>
 
