@@ -4,7 +4,7 @@
       "id": 1,
       "text": "Learn Vue.js",
       "day": "March 8th at 1:30pm",
-      "reminder": false
+      "reminder": true
     },
     {
       "id": 2,
@@ -17,6 +17,12 @@
       "text": "Learn Next.js",
       "day": "May 3rd at 1:30pm",
       "reminder": false
+    },
+    {
+      "text": "Completed building task tracker",
+      "day": "Today at Monday 08-08-2022",
+      "reminder": true,
+      "id": 6
     }
   ]
 }
